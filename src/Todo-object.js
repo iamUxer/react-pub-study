@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 const TodoListObj = () => {
   const [todoInput, setTodoInput] = useState("");
   const [addList, setAddList] = useState([]);
+  const [id, setId] = useState(0);
 
   const inputFocus = useRef();
 
@@ -12,20 +13,20 @@ const TodoListObj = () => {
   };
 
   const addHandler = () => {
-    console.log(addList);
-    setAddList([...addList, { id: addList.length + 1, contents: todoInput }]);
+    setAddList([...addList, { id: id, todo: todoInput }]);
+    setId(id + 1);
     setTodoInput("");
     inputFocus.current.focus();
   };
-  const deleteHandler = (listIndex) => {
-    console.log(addList);
-
+  const deleteHandler = (listId) => {
     setAddList(
       //filter = array return
-      addList.filter((item, index) => {
-        return index !== listIndex;
+      addList.filter((item) => {
+        //addList의 객체 리스트 id를 이용해서 삭제
+        return item.id !== listId;
       })
     );
+    inputFocus.current.focus();
   };
 
   return (
@@ -40,10 +41,11 @@ const TodoListObj = () => {
         <button onClick={addHandler}>Add</button>
       </div>
       <ul>
-        {addList.map((item, idx) => {
+        {addList.map((list, idx) => {
           return (
             <li key={idx}>
-              {item} <button onClick={() => deleteHandler(idx)}>X</button>
+              {list.todo}
+              <button onClick={() => deleteHandler(list.id)}>X</button>
             </li>
           );
         })}
