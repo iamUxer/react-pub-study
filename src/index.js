@@ -2,10 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import TodoListObj from "./Todo-object";
 import reportWebVitals from "./reportWebVitals";
+import TodoList from "./Todo";
+import Counter from "./counter";
 
 ReactDOM.render(
   <React.StrictMode>
     <TodoListObj />
+    <TodoList />
+    <Counter />
   </React.StrictMode>,
   document.getElementById("root")
 );
