@@ -5,10 +5,10 @@ const Counter = () => {
   const [counter, setCounter] = useState(0);
 
   const plusHandler = () => {
-    setCounter(counter + 1);
+    setCounter((c) => c + 1);
   };
   const minusHandler = () => {
-    setCounter(counter - 1);
+    setCounter((c) => c - 1);
   };
   const resetHandler = () => {
     setCounter(0);
